@@ -1,17 +1,13 @@
 # Diagrama de clases - UML
 
-```plantuml
-@startuml
+### Diagrama de flujo de autenticación
 
-class Persona {
-    -nombre: String
-    -edad: int
-    +hablar(): void
-}
-
-class Estudiante extends Persona {
-    -legajo: String
-    +estudiar(): void
-}
-
-@enduml
+```mermaid
+flowchart TD
+    A[Usuario] -->|Inicia sesión| B[Frontend]
+    B --> C[API Backend]
+    C --> D{¿Credenciales válidas?}
+    D -- Sí --> E[Generar Token JWT]
+    D -- No --> F[Mostrar error]
+    E --> G[Frontend recibe token]
+    G --> H[Accede a recursos]
